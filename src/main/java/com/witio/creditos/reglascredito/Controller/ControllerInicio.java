@@ -1,17 +1,20 @@
 package com.witio.creditos.reglascredito.Controller;
 
 import com.witio.creditos.reglascredito.Model.ReglasMultiplicar;
-import com.witio.creditos.reglascredito.Service.ReglasMultiplicarServiceImpl;
+import com.witio.creditos.reglascredito.Service.ReglasMultiplicarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ControllerInicio {
 
     @Autowired
-    private ReglasMultiplicarServiceImpl reglasMultiplicarServiceImpl;
+    private ReglasMultiplicarService reglasMultiplicarService;
 
     @GetMapping("/")
     public String inicio(){
@@ -19,8 +22,14 @@ public class ControllerInicio {
     }
 
     @PostMapping("/multiplicar")
-    public ResponseEntity postController(@RequestBody ReglasMultiplicar reglas) {
-        System.out.println("resultado2 = " + reglasMultiplicarServiceImpl.mostrarResultado(reglas.getNum1(),reglas.getNum2()));
+    public ResponseEntity mutiplicar(@RequestBody ReglasMultiplicar reglas) {
+        System.out.println("resultado2 = " + reglasMultiplicarService.mostrarResultado(reglas.getNum1(),reglas.getNum2()));
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @PostMapping("/guardarRegla")
+    public ResponseEntity guardarRegla(@RequestBody ReglasMultiplicar reglas) {
+        reglasMultiplicarService.guardarRegla(reglas.getNum1(),reglas.getNum2(),reglas.getResultado(),reglas);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 }

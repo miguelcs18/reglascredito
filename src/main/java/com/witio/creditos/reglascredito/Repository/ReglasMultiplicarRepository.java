@@ -1,4 +1,4 @@
-package com.witio.creditos.reglascredito.Service;
+package com.witio.creditos.reglascredito.Repository;
 
 import com.witio.creditos.reglascredito.Model.ReglasMultiplicar;
 import org.springframework.data.jpa.repository.JpaRepository;
