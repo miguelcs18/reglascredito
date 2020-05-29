@@ -21,6 +21,7 @@ public class ControllerInicio {
         return "Hola";
     }
 
+    /*
     @PostMapping("/multiplicar")
     public ResponseEntity mutiplicar(@RequestBody ReglasMultiplicar reglas) {
         System.out.println("resultado2 = " + reglasMultiplicarService.mostrarResultado(reglas.getNum1(),reglas.getNum2()));
@@ -32,4 +33,12 @@ public class ControllerInicio {
         reglasMultiplicarService.guardarRegla(reglas.getNum1(),reglas.getNum2(),reglas.getResultado(),reglas);
         return ResponseEntity.ok(HttpStatus.OK);
     }
+*/
+
+    @PostMapping("/probar")
+    public ResponseEntity reglaAplicar(@RequestBody ReglasMultiplicar reglas, Integer engancheUsuario) {
+        System.out.println("resultado3 = " + reglasMultiplicarService.reglaAplicar(reglas, engancheUsuario));
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
 }
+
