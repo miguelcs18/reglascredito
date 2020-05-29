@@ -32,7 +32,7 @@ public class ReglasMultiplicarServiceImpl implements ReglasMultiplicarService {
         List<ReglasMultiplicar> enganche = reglasMultiplicarRepository.findByTipoRegla(1);
         System.out.println(enganche);
 
-        Integer engancheUsuariolocal = 15;
+        Integer engancheUsuariolocal = engancheUsuario;
         Integer resultadoEngancheUsuario = 0;
 
 
