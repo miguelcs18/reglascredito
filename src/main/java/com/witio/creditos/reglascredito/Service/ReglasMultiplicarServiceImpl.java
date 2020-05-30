@@ -1,6 +1,7 @@
 package com.witio.creditos.reglascredito.Service;
 
 import com.witio.creditos.reglascredito.Model.ReglasMultiplicar;
+import com.witio.creditos.reglascredito.Model.Request;
 import com.witio.creditos.reglascredito.Repository.ReglasMultiplicarRepository;
 import groovy.util.Eval;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,50 +29,49 @@ public class ReglasMultiplicarServiceImpl implements ReglasMultiplicarService {
     }
 
     @Override
-    public Integer reglaAplicar(ReglasMultiplicar reglas, Integer engancheUsuario) {
-        List<ReglasMultiplicar> enganche = reglasMultiplicarRepository.findByTipoRegla(1);
-        System.out.println(enganche);
+    public Integer reglaAplicar(ReglasMultiplicar reglas, Request request) {
 
-        Integer engancheUsuariolocal = engancheUsuario;
-        Integer resultadoEngancheUsuario = 0;
-
-
-        System.out.println("engancheUsuariolocal = " + engancheUsuariolocal);
-
-
-/*
-        if( (Boolean) Eval.me(engancheUsuariolocal + " " + enganche.get(0).getOperador_inferior() + " " + enganche.get(0).getLimite_inferior() + " " +  enganche.get(0).getOperador_logico() +" "+  enganche.get(0).getOperador_superior() + " " + enganche.get(0).getLimite_superior()) ){
-            resultadoEngancheUsuario = 1 ;
+        /*
+        List<ReglasMultiplicar> reglasPerfilmiento = reglasMultiplicarRepository.findAll();
+        for (ReglasMultiplicar reglasPerfil: reglasPerfilmiento) {
+            reglasPerfil.getTipoRegla();
         }
-*/
+        */
+
+        //List<ReglasMultiplicar> enganche = reglasMultiplicarRepository.findByTipoRegla(1);
+        List<ReglasMultiplicar> enganche = reglasMultiplicarRepository.findAll();
+        //System.out.println(enganche);
+
+        Integer engancheUsuariolocal = Integer.parseInt(request.getEnganche());
+        Integer resultadoEngancheUsuario = 0;
+        Integer resultadoPerfilamiento = 0;
 
 
+        //System.out.println("engancheUsuariolocal = " + engancheUsuariolocal);
 
         String boleano = "";
 
         for (ReglasMultiplicar reglitas : enganche) {
 
-           if  (reglitas.getOperador_logico().equals("")) {
-               boleano = engancheUsuariolocal + " " + reglitas.getOperador_inferior() + " " + reglitas.getLimite_inferior();
-           }
-           else{
-               boleano = engancheUsuariolocal + " " + reglitas.getOperador_inferior() + " " + reglitas.getLimite_inferior() + " " + reglitas.getOperador_logico() + " " + engancheUsuariolocal + " " +   reglitas.getOperador_superior() + " " + reglitas.getLimite_superior();
-           }
-            System.out.println("Booleano = " + boleano);
+            if (reglitas.getOperador_logico().equals(""))
+            {
+                boleano = engancheUsuariolocal + " " + reglitas.getOperador_inferior() + " " + reglitas.getLimite_inferior();
+            } //if
+            else {
+                boleano = engancheUsuariolocal + " " + reglitas.getOperador_inferior() + " " + reglitas.getLimite_inferior() + " " + reglitas.getOperador_logico() + " " + engancheUsuariolocal + " " + reglitas.getOperador_superior() + " " + reglitas.getLimite_superior();
+            } //else
+            //System.out.println("Booleano = " + boleano);
 
-            if( (Boolean) Eval.me(boleano) ){
-                resultadoEngancheUsuario = reglitas.getResultado() ;
-                break;
-            }
+            if ((Boolean) Eval.me(boleano)) {
+                resultadoEngancheUsuario = reglitas.getResultado();
+                resultadoPerfilamiento += resultadoEngancheUsuario;
+                //break;
+            } //if
+        } // for
 
+        System.out.println("resultadoPerfilamiento = " + resultadoPerfilamiento);
 
-
-
-        }
-
-       System.out.println("resultado FINAL = " + resultadoEngancheUsuario);
-
-        return 1;
+        return resultadoEngancheUsuario;
     }
 
     @Override
