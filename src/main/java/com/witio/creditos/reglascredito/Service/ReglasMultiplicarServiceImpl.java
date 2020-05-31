@@ -73,49 +73,7 @@ public class ReglasMultiplicarServiceImpl implements ReglasMultiplicarService {
             //System.out.println("resultadoPerfilamiento = " + resultadoPerfilamiento);
 
         } //for
-        /*
-        List<ReglasMultiplicar> reglasPerfilmiento = reglasMultiplicarRepository.findAll();
-        for (ReglasMultiplicar reglasPerfil: reglasPerfilmiento) {
-            reglasPerfil.getTipoRegla();
-        }
-        */
 
-/*
-        List<ReglasMultiplicar> enganche = reglasMultiplicarRepository.findByTipoRegla(Integer.parseInt(request.getTipoRegla()));
-        //List<ReglasMultiplicar> enganche = reglasMultiplicarRepository.findAll();
-        //System.out.println(enganche);
-
-        Integer engancheUsuariolocal = Integer.parseInt(request.getValor());
-        Integer resultadoEngancheUsuario = 0;
-        Integer resultadoPerfilamiento = 0;
-
-
-        //System.out.println("engancheUsuariolocal = " + engancheUsuariolocal);
-
-        String boleano = "";
-
-        for (ReglasMultiplicar reglitas : enganche) {
-
-            if (reglitas.getOperador_logico().equals(""))
-            {
-                boleano = engancheUsuariolocal + " " + reglitas.getOperador_inferior() + " " + reglitas.getLimite_inferior();
-            } //if
-            else {
-                boleano = engancheUsuariolocal + " " + reglitas.getOperador_inferior() + " " + reglitas.getLimite_inferior() + " " + reglitas.getOperador_logico() + " " + engancheUsuariolocal + " " + reglitas.getOperador_superior() + " " + reglitas.getLimite_superior();
-            } //else
-            //System.out.println("Booleano = " + boleano);
-
-            if ((Boolean) Eval.me(boleano)) {
-                resultadoEngancheUsuario = reglitas.getResultado();
-                resultadoPerfilamiento += resultadoEngancheUsuario;
-                //break;
-            } //if
-        } // for
-
-        System.out.println("resultadoPerfilamiento = " + resultadoPerfilamiento);
-
-
- */
 
         return resultadoPerfilamiento;
     }
