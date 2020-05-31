@@ -1,5 +1,6 @@
 package com.witio.creditos.reglascredito.Service;
 
+import com.witio.creditos.reglascredito.Model.ReglasList;
 import com.witio.creditos.reglascredito.Model.ReglasMultiplicar;
 import com.witio.creditos.reglascredito.Model.Request;
 import com.witio.creditos.reglascredito.Repository.ReglasMultiplicarRepository;
@@ -31,6 +32,13 @@ public class ReglasMultiplicarServiceImpl implements ReglasMultiplicarService {
     @Override
     public Integer reglaAplicar(ReglasMultiplicar reglas, Request request) {
 
+        System.out.println("request = " + request);
+
+
+
+        List<ReglasList> reglasLista = request.getReglasLists();
+
+        System.out.println("request List = " + reglasLista.get(0));
         /*
         List<ReglasMultiplicar> reglasPerfilmiento = reglasMultiplicarRepository.findAll();
         for (ReglasMultiplicar reglasPerfil: reglasPerfilmiento) {
@@ -38,11 +46,12 @@ public class ReglasMultiplicarServiceImpl implements ReglasMultiplicarService {
         }
         */
 
-        //List<ReglasMultiplicar> enganche = reglasMultiplicarRepository.findByTipoRegla(1);
-        List<ReglasMultiplicar> enganche = reglasMultiplicarRepository.findAll();
+
+        List<ReglasMultiplicar> enganche = reglasMultiplicarRepository.findByTipoRegla(Integer.parseInt(request.getTipoRegla()));
+        //List<ReglasMultiplicar> enganche = reglasMultiplicarRepository.findAll();
         //System.out.println(enganche);
 
-        Integer engancheUsuariolocal = Integer.parseInt(request.getEnganche());
+        Integer engancheUsuariolocal = Integer.parseInt(request.getValor());
         Integer resultadoEngancheUsuario = 0;
         Integer resultadoPerfilamiento = 0;
 

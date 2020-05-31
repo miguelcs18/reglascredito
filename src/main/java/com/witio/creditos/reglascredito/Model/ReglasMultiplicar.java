@@ -21,7 +21,5 @@ public class ReglasMultiplicar implements Serializable {
     private String operador_logico;
     private String operador_superior;
     private String limite_superior;
-   // private Integer num1;
-   // private Integer num2;
     private Integer resultado;
 }
