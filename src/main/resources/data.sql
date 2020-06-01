@@ -67,3 +67,10 @@ INSERT INTO REGLAS_MULTIPLICAR VALUES('37','1','','==','','','1','10');
 INSERT INTO REGLAS_MULTIPLICAR VALUES('38','2','','==','','','2','10');
 INSERT INTO REGLAS_MULTIPLICAR VALUES('39','3','','==','','','3','10');
 INSERT INTO REGLAS_MULTIPLICAR VALUES('40','4','','==','','','4','10');
+
+
+-- Perfil
+
+INSERT INTO PERFIL VALUES ('1','30','0','PerfilCte','<=','','','1','A MEJORAR');
+INSERT INTO PERFIL VALUES ('2','31','75','PerfilCte','>=','Y','<=','1','REGULAR');
+INSERT INTO PERFIL VALUES ('3','75','100','PerfilCte','>','','','1','BUEN PERFIL');
