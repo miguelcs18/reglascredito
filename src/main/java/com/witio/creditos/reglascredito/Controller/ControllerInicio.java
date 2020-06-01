@@ -20,7 +20,7 @@ public class ControllerInicio {
        // Integer engancheUsuario = Integer.parseInt(request.getEnganche());
 
         //System.out.println("enganche request = "+ request.getValor() );
-        System.out.println("resultado3 = " + reglasMultiplicarService.reglaAplicar(reglas, request));
+        System.out.println("*** resultado3 *** = " + reglasMultiplicarService.reglaAplicar(reglas, request));
         return ResponseEntity.ok(HttpStatus.OK);
     }
 }

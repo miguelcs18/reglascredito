@@ -63,10 +63,7 @@ public class ReglasMultiplicarServiceImpl implements ReglasMultiplicarService {
 
                 if ((Boolean) Eval.me(boleano)) {
                     resultadoEngancheUsuario = reglitas.getResultado();
-                    //System.out.println("resultadoEngancheUsuario = " + resultadoEngancheUsuario);
                     resultadoPerfilamiento += resultadoEngancheUsuario;
-                    //System.out.println("resultadoPerfilamiento = " + resultadoPerfilamiento);
-                    //break;
                 } //if
             } // for
 
