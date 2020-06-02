@@ -30,7 +30,7 @@ public class ReglasMultiplicarServiceImpl implements ReglasMultiplicarService {
     }
 
     @Override
-    public Integer reglaAplicar(ReglasMultiplicar reglas, Request request) {
+    public Integer reglaAplicar(Request request) {
 
         //System.out.println("request = " + request);
 

@@ -10,7 +10,7 @@ public interface ReglasMultiplicarService {
 
     void guardarRegla(Integer num1, Integer num2, Integer resultado, ReglasMultiplicar reglas);
 
-    Integer reglaAplicar(ReglasMultiplicar reglas, Request request);
+    Integer reglaAplicar(Request request);
 
     Integer probarQuery(String queryString);
 
