@@ -35,7 +35,7 @@ public class ReglasMultiplicarServiceImpl implements ReglasMultiplicarService {
     }
 
     @Override
-    public Integer reglaAplicar(Request request) {
+    public Double reglaAplicar(Request request) {
 
         //System.out.println("request = " + request);
 
@@ -46,7 +46,7 @@ public class ReglasMultiplicarServiceImpl implements ReglasMultiplicarService {
 
         String boleano = "";
         Integer resultadoEngancheUsuario = 0;
-        Integer resultadoPerfilamiento = 0;
+        Double resultadoPerfilamiento = 0.0;
 
         for (ReglasList reglaslista : reglasLista) {
             System.out.println("ruleType = " + reglaslista.getRuleType() + " value = " + reglaslista.getValue());
@@ -75,42 +75,27 @@ public class ReglasMultiplicarServiceImpl implements ReglasMultiplicarService {
 
         //List<ReglasAritmeticas> reglasAritmeticas = reglasAritmeticasRepository.findByIdReglaArit(request.getReglasAritmeticasList().get(0).getIdReglaArit());
         List<ReglasAritmeticas> reglasAritmeticas = reglasAritmeticasRepository.findAll();
+        List<ReglasAritmeticas> reglasArRequest = request.getReglasAritmeticasList();
+        //Double resultadoPerfilamiento2  = 0.0;
+        String operador;
+        String factor;
+        String expresion;
+        for (ReglasAritmeticas reglasArR: reglasArRequest) {
+            //System.out.println("reglasArRequest = " + reglasArR);
+            for (ReglasAritmeticas reglasAr:  reglasAritmeticas)
+            {
+                if(reglasArR.getIdReglaArit() == reglasAr.getIdReglaArit()) {
+                    operador = reglasAr.getOperador();
+                    factor = reglasAr.getFactor();
+                    expresion = Eval.me(resultadoPerfilamiento + " " + operador + " " + factor).toString();
+                    resultadoPerfilamiento = Double.parseDouble(expresion);
+                    //System.out.println("Expresion = " + expresion);
+                    //System.out.println("resultadoPerfilamiento = " + resultadoPerfilamiento);
+                }
+            }
 
-        //System.out.println("reglasAritmeticas = " + reglasAritmeticas);
-        System.out.println("JSON regla = " + request.getReglasAritmeticasList().get(0).getIdReglaArit());
-        Double operacionPerfil = 0.0;
-        //operacionPerfil = (BigDecimal)Eval.me( resultadoPerfilamiento + " " + reglasAritmeticas.get(0).getOperador() + ""  + reglasAritmeticas.get(0).getFactor());
-        System.out.println("Perfil = " + Eval.me(resultadoPerfilamiento + " " + reglasAritmeticas.get(2).getOperador() + "" + reglasAritmeticas.get(2).getFactor()));
-        //System.out.println("operacionPerfil = " + operacionPerfil );
-        //Double.parseDouble(Eval.me( resultadoPerfilamiento + " " + reglasAritmeticas.get(0).getOperador() + ""  + reglasAritmeticas.get(0).getFactor()));
-        Object operacion = Eval.me(resultadoPerfilamiento + " " + reglasAritmeticas.get(2).getOperador() + "" + reglasAritmeticas.get(2).getFactor());
-        System.out.println("operacion = " + operacion.toString());
-        Double operacionD = Double.parseDouble(operacion.toString());
-
-        System.out.println("regla 5 = " + reglasAritmeticas.get(1).getOperador());
-
-        System.out.println("operacionD = " + Eval.me(operacionD + " "  + reglasAritmeticas.get(4).getOperador() + " " + reglasAritmeticas.get(4).getFactor() ));
-//Eval.me(
-        /*
-
-        List<ReglasAritmeticas> reglasAritmetica = request.getReglasAritmeticasList();
-
-        for (ReglasAritmeticas reglasA:  reglasAritmetica)
-        {
-            System.out.println("idReglaArit = " + reglasA.getIdReglaArit() + " operador = " + reglasA.getOperador() + " factor = " + reglasA.getFactor() );
         }
 
-
-         */
-        /*
-        Object resultadoFinal;
-        for (ReglasAritmeticas reglasArit: reglasAritmeticas) {
-            //System.out.println("Aritmetica = " + reglasArit);
-
-            resultadoFinal =  Eval.me(resultadoPerfilamiento + " "  + reglasArit.getOperador() + " " + reglasArit.getFactor());
-            //System.out.println("resultadoFinal = " + resultadoFinal );
-        }
-*/
 
         return resultadoPerfilamiento;
     }
